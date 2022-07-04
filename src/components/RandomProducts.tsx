@@ -1,7 +1,16 @@
 import { useEffect, useState } from "react";
-import { getRandomProducts } from "../services/api-service"
-import { Product } from "./Product";
-import '../css/RandomProducts.css';
+import { getRandomProducts } from "../services/product-api-service"
+import { ProductCard } from "./ProductCard";
+import styled from "styled-components";
+
+const RandomProductsWrapper = styled.div`
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-style: ridge;
+    background-color: white;
+`;
 
 export interface ProductInterface {
     id: number;
@@ -35,17 +44,16 @@ export const RandomProducts = (props: any) => {
     return (
         <>
             <h1>Random Products</h1>
-            <div className="container">
+            <RandomProductsWrapper>               
                 {!loading && randomProducts.map((randomProduct) => (
-                    <Product product={randomProduct} key={randomProduct.id}></Product>
+                    <ProductCard product={randomProduct} key={randomProduct.id}></ProductCard>
                 ))}
-
                 {loading && (
                     <>
                         <h1>It's loading</h1>
                     </>
                 )}
-            </div>
+            </RandomProductsWrapper>
         </>
     )
 }

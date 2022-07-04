@@ -3,6 +3,9 @@ import { SearchBar } from '../components/SearchBar';
 import { RandomProducts } from '../components/RandomProducts';
 
 const HomeViewWrapper = styled.div`
+    width: 1200px;
+    max-width: 1200px;
+    margin: auto;
     align-items: center;
     display: flex;
     flex-flow: column wrap;
@@ -13,8 +16,6 @@ export const HomeView = (props:any) => {
 
     return (
         <HomeViewWrapper>
-          <SearchBar>
-          </SearchBar>
           <RandomProducts>
           </RandomProducts>
         </HomeViewWrapper>

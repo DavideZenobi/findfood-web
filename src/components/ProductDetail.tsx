@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import '../css/ProductDetail.css';
 import image from '../img/barilla.jpg'
 import { useEffect, useState } from 'react';
-import { getProduct } from '../services/api-service';
+import { addView, getProduct } from '../services/product-api-service';
 import { ProductDetailChart } from './ProductDetailChart';
 import styled from 'styled-components';
 
@@ -21,7 +21,6 @@ const ProductDetailImage = styled.div`
     background-color: darkgrey;
     width: 450px;
     height: 350px;
-    border: 1px solid;
 `;
 
 const ProductDetailInfoContainer = styled.div`
@@ -37,22 +36,10 @@ export interface ProductInterface {
     description: string;
     price: number;
     shopsCount: number;
+    timesVisited: number;
 }
 
 export const ProductDetail = (props: any) => {
-
-    //Get ID from URL
-    const { id } = useParams();
-
-    const [product, setProduct] = useState<ProductInterface>();
-    const [loading, setLoading] = useState(true);
-    
-    useEffect(() => {
-        getProduct(id).then(product => {
-            setProduct(product);
-            setLoading(false);
-        });
-    }, []);
 
     return (
         <>          
@@ -63,13 +50,9 @@ export const ProductDetail = (props: any) => {
                     </ProductDetailImage>
                 </ProductDetailImageContainer>
                 <ProductDetailInfoContainer>
-                    {!loading && (
-                        <>
-                            <h2>{product!.name}</h2>
-                            <h3>Desde {product!.price} € en {product!.shopsCount} tiendas</h3>
-                            <ProductDetailChart product={product} />
-                        </>
-                    )}
+                    <h2>{props.product!.name}</h2>
+                    <h3>Desde {props.product!.price} € en {props.product!.shopsCount} tiendas</h3>
+                    <ProductDetailChart product={props.product} />
                 </ProductDetailInfoContainer>
             </ProductDetailContainer>
         </>

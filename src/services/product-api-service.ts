@@ -1,9 +1,9 @@
-
-//PRODUCTS ENDPOINTS
-
+/**
+ * GET ENDPOINTS
+ */
 
 export const getProduct = (input: any): Promise<any> => {
-    return fetch(`http://localhost:8080/api/product/single?input=${encodeURIComponent(input)}`)
+    return fetch(`http://localhost:8080/api/product/${encodeURIComponent(input)}`)
     .then(function(response) {
         if(!response.ok) {
             console.log("Error with HTTP response");
@@ -16,9 +16,24 @@ export const getProduct = (input: any): Promise<any> => {
     });
 }
 
+
 // localhost:8080/api/product/productsWithPrice
-export const getProductsWithPrice = (input: any): Promise<any> => {
-    return fetch(`http://localhost:8080/api/product/productsWithPrice?input=${encodeURIComponent(input)}`)
+export const getProductsWithPrice = (text: string): Promise<any> => {
+    return fetch(`http://localhost:8080/api/product/text=${encodeURIComponent(text)}`)
+    .then(function(response) {
+        if(!response.ok) {
+            console.log("Error with HTTP response");
+        } else {
+            return response.json();
+        }
+    })
+    .catch(function(error) {
+        console.log("Error fetching API: " + error);
+    });
+}
+
+export const getProductsWithPriceV2 = (text: string): Promise<any> => {
+    return fetch(`http://localhost:8080/api/product/V2?text=${encodeURIComponent(text)}`)
     .then(function(response) {
         if(!response.ok) {
             console.log("Error with HTTP response");
@@ -46,42 +61,19 @@ export const getRandomProducts = (): Promise<any> => {
     });
 }
 
-export const getAllShops = (): Promise<any> => {
-    return  fetch("http://localhost:8080/api/shop/search")
-    .then(function(response) {
-        if(!response.ok) {
-            console.log("Error with HTTP response");
-        } else {
-            return response.json();
-        }
-    })
-    .catch(function(error) {
-        console.log("Error fetching API: " + error);
-    });
-        
-}
 
 
+/**
+ * POST AND PUT ENDPOINTS
+ */
 
-export const getLabels = (): Promise<any> => {
-    return fetch(`http://localhost:8080/api/label/`)
-    .then(function(response) {
-        if(!response.ok) {
-            console.log("Error with HTTP response");
-        } else {
-            return response.json();
-        }
-    })
-    .catch(function(error) {
-        console.log("Error fetching API: " + error);
-    });
-}
+ export const addView = (productId: number): Promise<any> => {
 
+    const requestOptions = {
+        method: 'PUT'
+    };
 
-// SHOPS ENDPOINTS
-
-export const getShopsWithPriceByProductId = (productId: any): Promise<any> => {
-    return fetch(`http://localhost:8080/api/shop/shopsByProductId?productId=${encodeURIComponent(productId)}`)
+    return fetch(`http://localhost:8080/api/product/${encodeURIComponent(productId)}/view`, requestOptions)
     .then(function(response) {
         if(!response.ok) {
             console.log("Error with HTTP response");

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import TextField from "@mui/material/TextField";
-import { getAllShops, getProductsWithPrice, getLabels } from "../services/api-service";
+import { getProductsWithPrice } from "../services/product-api-service";
 import Button from '@mui/material/Button';
 import Autocomplete, { AutocompleteRenderGetTagProps } from '@mui/material/Autocomplete';
 import { Chip } from '@mui/material';
@@ -91,15 +91,3 @@ export const SearchBar = (props: any) => {
         </>
     );
 }
-
-
-
-/*<TextField
-                id="outlined-basic"
-                variant="outlined"
-                rows="1"
-                fullWidth
-                placeholder="Example: barilla, spaguettis, water"
-                onChange={onChange}
-            />
-            <h3>{options}</h3>*/

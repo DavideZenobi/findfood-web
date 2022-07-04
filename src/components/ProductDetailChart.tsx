@@ -35,7 +35,7 @@ export const ProductDetailChart = (props: any) => {
                         <li><b>Marca: </b>{props.product.brand}</li>
                         <li><b>Peso: </b>{props.product.weight} gr</li>
                         <li><b>Descripción: </b>{props.product.description}</li>
-                        <li><b>Nº visitas: </b>{props.product.visits}</li>
+                        <li><b>Nº visitas: </b>{props.product.timesVisited}</li>
                     </ul>
                 </div>
                 <div id='especificaciones' className='tabcontent'>
