@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import { ProfileIcon } from "./ProfileIcon";
@@ -16,8 +16,23 @@ const TopBarWrapper = styled.div`
     top: 0;
 `;
 
-export const TopBar = (props:any) => {
+export interface User {
+    nif: string,
+    email: string,
+    phoneNumber: string,
+    dateCreated: Date
+}
 
+export const TopBar = (props:any) => {
+    
+    const [isLogged, setIsLogged] = useState<boolean>(false);
+    const [user, setUser] = useState<User>();
+
+    /*useEffect(() => {
+        checkLogin().then(response => {
+            console.log("Login: " + response);
+        });
+    }, []);*/
 
     return (
         <>

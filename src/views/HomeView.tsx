@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { SearchBar } from '../components/SearchBar';
 import { RandomProducts } from '../components/RandomProducts';
+import { isAuthenticated } from '../services/user-api-service';
+import { useEffect } from 'react';
 
 const HomeViewWrapper = styled.div`
     width: 1200px;
@@ -13,6 +15,13 @@ const HomeViewWrapper = styled.div`
 `;
 
 export const HomeView = (props:any) => {
+
+    useEffect(() => {
+        isAuthenticated().then(authenticated => {
+            console.log("Login: ");
+            console.log(authenticated);
+        });
+    }, []);
 
     return (
         <HomeViewWrapper>
